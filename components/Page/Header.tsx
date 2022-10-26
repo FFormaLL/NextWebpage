@@ -89,6 +89,7 @@ const UserAccountNav = ({ username }) => {
   )
 }
 
+
 const Header = () => {
   const user = useSelector((s: GlobalState) => s.authenticatedUser)
   return (
