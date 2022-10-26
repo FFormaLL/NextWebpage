@@ -6,8 +6,8 @@ import { GlobalState } from '~/store'
 import { ThemeProps } from '~/styles/theme'
 import ThemeSwitch from '../ThemeSwitch'
 
-const HeaderWrapper = styled.header(({ theme }:ThemeProps) => `
-  padding: 16px;
+const HeaderWrapper = styled.header(({ theme }: ThemeProps) => `
+  padding: 10px;
   position: relative;
 
   h1 {
@@ -17,36 +17,41 @@ const HeaderWrapper = styled.header(({ theme }:ThemeProps) => `
   .brand-logo {
     display: inline-block;
     width: 32px;
-    border-radius: 50%;
+    border-radius: 0%;
     border: 1px solid ${theme.colors.white};
-    background-color: ${theme.colors.white};
   }
   .brand-name {
+    text-align: center;
     display: inline-block;
-    font-size: 20px;
-    padding: 0 8px;
+    font-size: 30px;
+    font-family: serif;
+    letter-spacing: 5px;
+    padding: 0 10px;
+    animation: colorRotate 3s linear 0s infinite;
   }
+  @keyframes colorRotate {
+    from {
+        color: #ff6666;}10% {color: #ff00bf;}20% {color: #7300ff;}30% {color: #0800ff;}40% {color: #0073ff;}50% {color: #00bbff;}60% {color: #00ff7b;}70% {color: #00ff22;}80% {color: #6dff33;}90% {color: #ffff00;}100% {color: #ff8c66;}
+}
   .brand-name, .theme-switch {
     position: relative;
-    top: -8px;
+    top: -40px;
   }
   .theme-switch {
-    top: -2px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
   }
 
   nav {
     position: absolute;
-    top: 50%;
-    right: 0;
+    top: 20%;
+    right: 40px;
     transform: translate(0, -50%);
     padding: 32px;
   }
 
-  .theme-switch {
-    position: relative;
-    bottom: -0.55em;
-    margin-left: 1em;
-  }
+
 `)
 
 const Divider = styled.span`
@@ -74,7 +79,7 @@ const UserAccountNav = ({ username }) => {
   return (
     <>
       <Link href="/me">
-        <a>{ username }</a>
+        <a>{username}</a>
       </Link>
       <Divider />
       <Link href="/logout">
@@ -85,16 +90,16 @@ const UserAccountNav = ({ username }) => {
 }
 
 const Header = () => {
-  const user = useSelector((s:GlobalState) => s.authenticatedUser)
+  const user = useSelector((s: GlobalState) => s.authenticatedUser)
   return (
-      <HeaderWrapper>
+    <HeaderWrapper>
       <h1>
-      <Link href="/">
-        <a>
-          <Image className="brand-logo" width="32" height="32" src="/icons/nextjs.png" alt="Brand Logo" />
-          <span className="brand-name">NextJS Template</span>
-        </a>
-      </Link>
+        <Link href="/">
+          <a>
+            <Image className="brand-logo" width="100" height="100" src="/icons/formal.png" alt="Brand Logo" />
+            <span className="brand-name">FormaL</span>
+          </a>
+        </Link>
       </h1>
       <span className="theme-switch">
         <ThemeSwitch />
@@ -103,10 +108,10 @@ const Header = () => {
         {
           !user
             ? <GuestAccountNav />
-            : <UserAccountNav username={user.username} /> 
+            : <UserAccountNav username={user.username} />
         }
       </nav>
-      </HeaderWrapper>
+    </HeaderWrapper>
   )
 }
 

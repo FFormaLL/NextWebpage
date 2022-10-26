@@ -32,7 +32,7 @@ const GlobalTheme = {
 } // as DefaultTheme
 
 const darkThemeColors = {
-  bgPrimary: '#262348',
+  bgPrimary: '#3f1061',
   fgPrimary: genericColors.white,
   fgLight: '#ccc',
 }

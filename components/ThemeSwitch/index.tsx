@@ -29,7 +29,7 @@ const SwitchWrapper = styled.span`
     }
   }
   &.${ColorScheme.Dark} {
-    background: #1A66E7;
+    background: #270938;
     ::after {
       content: '🌛';
       transform: translateX(20px);
