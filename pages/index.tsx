@@ -5,6 +5,7 @@ import { useDispatcher, useMedia } from '~/hooks'
 import { ColorScheme, GlobalState } from '~/store'
 import { ThemeProps } from '~/styles/theme'
 import Page from '~/components/Page'
+import Clock from '~/components/Clock'
 
 const WrapperWelcome = styled.div`
   position: relative;
@@ -52,6 +53,9 @@ const IndexPage = () => {
     <Page title="Home">
       <WrapperWelcome>
         <h1>Welcome! 👋</h1>
+        <h3>
+          <Clock />
+        </h3>
         <Card onClick={toggleUserSim}>
           Log {globalState.authenticatedUser ? 'out' : 'in'}
         </Card>
@@ -61,7 +65,7 @@ const IndexPage = () => {
         <Card>
            {
             isMobile ? 'Mobile'
-              : isTablet ? 'tablet' : 'Dekstop'
+              : isTablet ? 'tablet' : 'Desktop'
           } 
         </Card>
         <Link href="videos">
