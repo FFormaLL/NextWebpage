@@ -58,12 +58,12 @@ button {
 const ToDoList = () => {
     const [input, setInput] = useState("")
     const [items, setItems] = useState([])
-    enterKey: (event:any) => {
-        if (event.keyCode === 13 || event.which === 13) {
-            setItems([...items,input])
-            setInput("")
-        }
-    }
+    // enterKey: (event:any) => {
+    //     if (event.keyCode === 13 || event.which === 13) {
+    //         setItems([...items,input])
+    //         setInput("")
+    //     }
+    // }
     
     return (
         <Page>
