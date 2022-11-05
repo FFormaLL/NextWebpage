@@ -65,7 +65,7 @@ const IndexPage = () => {
         <Card>
            {
             isMobile ? 'Mobile'
-              : isTablet ? 'tablet' : 'Desktop'
+              : isTablet ? 'Tablet' : 'Desktop'
           } 
         </Card>
         <Link href="videos">
