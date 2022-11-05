@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import { ThemeProps } from './theme'
 
-const GlobalStyle = createGlobalStyle(({ theme }:ThemeProps) => `
+const GlobalStyle = createGlobalStyle(({ theme }: ThemeProps) => `
   body {
     margin: 0;
     padding: 0;
@@ -9,7 +9,10 @@ const GlobalStyle = createGlobalStyle(({ theme }:ThemeProps) => `
     font-family: ${theme.fonts.roboto};
     background-color: ${theme.colors.bgPrimary};
   }
-
+  h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+  }
   a {
     color: inherit;
     text-decoration: none;
@@ -30,4 +33,4 @@ const Main = styled.main`
   min-height: calc(100vh - 150px);
 `
 
-export { Main, GlobalStyle, PreventBodyScrollStyles}
+export { Main, GlobalStyle, PreventBodyScrollStyles }

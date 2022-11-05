@@ -12,11 +12,6 @@ const WrapperWelcome = styled.div`
   text-align: center;
   padding: 0px 62px;
   height: 80vh;
-
-  h1 {
-    font-size: 64px;
-    margin-bottom: 20px;
-  }
 `
 
 const Card = styled.div(({ theme }:ThemeProps) => `
