@@ -7,24 +7,24 @@ export default function Clock() {
     setTimeout(() => setTime(new Date()), 200)
   }, [time])
 
-  const day = time.getDay()
-  const month = time.getMonth()
+  const day = time.getDate()
+  const month = time.getMonth() + 1
   const year = (time.getFullYear() - 2000)
 
   let hours = time.getHours()
   let minutes = time.getMinutes().toString()
-  const ampm = hours < 12 ? "am": "pm"
+  const ampm = hours < 12 ? "am" : "pm"
 
-  if (!hours){
+  if (!hours) {
     hours = 12
   }
 
-  if (hours > 12){
+  if (hours > 12) {
     hours -= 12
   }
 
-  if (minutes.length === 1){
-    minutes = `0${minutes}` 
+  if (minutes.length === 1) {
+    minutes = `0${minutes}`
   }
 
   return (

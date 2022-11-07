@@ -1,3 +1,27 @@
+- Add more 404
+- Clean up Videos CSS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # NextJS Template
 
 Common tooling built with TypeScript, Redux, and Styled Components. Outlined use cases include styles/themes, branding, redux persistence, Google Analytics, and SSO/OAuth. Developer experience (DX) enhancements include testing, linting, and relative path imports. Boilerplate is provided for Docker, Terraform, GitHub Actions, and more. Example favicon and other branding artifacts were generated using [RealFaviconGenerator](https://realfavicongenerator.net/).

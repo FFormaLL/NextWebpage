@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { useDispatcher, useMedia } from '~/hooks'
 import { ColorScheme, GlobalState } from '~/store'
-import { ThemeProps } from '~/styles/theme'
 import Page from '~/components/Page'
 import Clock from '~/components/Clock'
+import Button from '~/components/Buttons/Button'
 
 const WrapperWelcome = styled.div`
   position: relative;
@@ -13,20 +13,6 @@ const WrapperWelcome = styled.div`
   padding: 0px 62px;
   height: 80vh;
 `
-
-const Card = styled.div(({ theme }:ThemeProps) => `
-  cursor: pointer;
-  font-size: 15px;
-  display: inline-block;
-  width: 15%;
-  min-width: 180px;
-  margin: 0.5em;
-  height: 40px;
-  line-height: 40px;
-  border: 1px solid ${theme.colors.fgLight};
-  border-radius: 0.5em;
-  background: rgba(0, 0, 0, 0.30);
-`)
 
 const IndexPage = () => {
   const { isMobile, isTablet } = useMedia()
@@ -51,22 +37,27 @@ const IndexPage = () => {
         <h3>
           <Clock />
         </h3>
-        <Card onClick={toggleUserSim}>
+        <Button onClick={toggleUserSim}>
           Log {globalState.authenticatedUser ? 'out' : 'in'}
-        </Card>
-        <Card onClick={switchColorScheme}>
+        </Button>
+        <Button onClick={switchColorScheme}>
           {globalState.colorScheme === ColorScheme.Dark ? 'Light' : 'Dark'} 
-        </Card>
-        <Card>
+        </Button>
+        <Button>
            {
             isMobile ? 'Mobile'
               : isTablet ? 'Tablet' : 'Desktop'
           } 
-        </Card>
+        </Button>
         <Link href="videos">
-          <Card>
+          <Button>
             Clips
-          </Card>
+          </Button>
+        </Link>
+        <Link href="guests">
+          <Button>
+            Sign my website here!
+          </Button>
         </Link>
       </WrapperWelcome>
     </Page>
