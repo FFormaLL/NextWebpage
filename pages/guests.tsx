@@ -1,7 +1,7 @@
 import Page from '~/components/Page'
 import Button from '~/components/Buttons/Button'
 import axios from 'axios'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { API_HOST } from '~/config';
 
@@ -53,7 +53,14 @@ const GuestList = ({ guestList }) => {
         } catch (e) { setGuests(null) }
     }
 
-
+    useEffect(() => {
+        setTimeout(async () => {
+            try {
+                const response = await axios.get(`${API_HOST}/guests`)
+                setGuests(response.data)
+            } catch (e) { setGuests(null) }
+        }, 1000)
+    }, [guests])
 
     return (
         <Page title="Guests">
