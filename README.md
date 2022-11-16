@@ -1,5 +1,10 @@
 - Add more 404
 - Clean up Videos CSS
+- KEEP THINGS DUMB 
+- KISS, KEEP IT SIMPLE STUPID
+- Sign in OAuth user id in DB only allow specific user to upload
+- Discord CMS storing clips and pulling it into wesbite
+
 
 
 

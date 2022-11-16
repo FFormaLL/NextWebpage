@@ -4,13 +4,18 @@ import axios from 'axios'
 import { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { API_HOST } from '~/config';
+import { Main } from '~/styles/global'
 
 const GuestWrapper = styled.div`
-    width: 320px;
+    width: 450px;
     margin: 0 auto;
+    border: 1px solid black;
+    padding: 18px;
+    border-radius: 10px;
+
 
     h3 {
-        font-size: 32px;
+        font-size: 16px;
         width: 100%;
         text-align: center;
     }
@@ -31,14 +36,34 @@ const GuestWrapper = styled.div`
     }
 
     ol, ul {
-        height: 400px;
+        width: 100%;
+        height: auto;
+        line-height: 1.5em;
+        margin: 0px auto;
+        padding: 0;
         li {
-            text-align: center;
-            font-size: 32px;
-            color: #72DB24;
-            font-family: Brush Script MT, cursive;
+            font-size: 20px;
+            font-family: Garamond;
+            list-style: none;
+            position: relative;
+            padding: 0 0px 10px 15px;
+        }
+        li:not(:last-child) {
+            margin-bottom: 15px;
         }
     }
+    
+    li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        height: 5px;
+        width: 5px;
+        border: 1px solid #f9dd94;
+        border-width: 2px 2px 0 0;
+        transform: translate(0px, 3px) rotate(45deg);
+  }
 `
 
 const GuestList = ({ guestList }) => {
@@ -63,24 +88,26 @@ const GuestList = ({ guestList }) => {
     }, [guests])
 
     return (
-        <Page title="Guests">
-            <GuestWrapper>
-                {
-                    !guests
-                        ? <h3>Connection to API cannot be obtained</h3>
-                        : !guests.length
-                            ? <h3>{`No guests :(`}</h3>
-                            : <ol>{guests.map(guest => <li key={guest._id}>{guest.name}</li>)}</ol>
-                }
-                <input
-                    type="text"
-                    placeholder="Enter your name"
-                    value={input}
-                    onChange={e => setInput(e.target.value)}
-                />
-                <Button onClick={submitGuest}>Submit</Button>
-            </GuestWrapper>
-        </Page>
+        <Main>
+            <Page title="Guests">
+                <GuestWrapper>
+                    {
+                        !guests
+                            ? <h3>Connection to API cannot be obtained</h3>
+                            : !guests.length
+                                ? <h3>{`No guests :(`}</h3>
+                                : <ol>{guests.map(guest => <li key={guest._id}>{guest.name}</li>)}</ol>
+                    }
+                    <input
+                        type="text"
+                        placeholder="Enter your name"
+                        value={input}
+                        onChange={e => setInput(e.target.value)}
+                    />
+                    <Button onClick={submitGuest}>Submit</Button>
+                </GuestWrapper>
+            </Page>
+        </Main>
     )
 }
 

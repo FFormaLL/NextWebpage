@@ -49,7 +49,7 @@ const IndexPage = () => {
               : isTablet ? 'Tablet' : 'Desktop'
           } 
         </Button>
-        <Link href="videos">
+        <Link href="clips">
           <Button>
             Clips
           </Button>
