@@ -1,7 +1,10 @@
 import Page from '~/components/Page'
 import VideoCard from '~/components/VideoCard'
+import styled from 'styled-components'
 
+const Wrapper = styled.div`
 
+`
 
 const Videos = () => {
     const ytvideos = [
@@ -24,7 +27,7 @@ const Videos = () => {
 
     return (
         <Page title="RL CLips">
-            <div>
+            <Wrapper>
                 {
                     ytvideos.map(video => (
                         <VideoCard
@@ -34,7 +37,7 @@ const Videos = () => {
                         />
                     ))
                 }
-            </div>
+            </Wrapper>
         </Page>
     )
 }

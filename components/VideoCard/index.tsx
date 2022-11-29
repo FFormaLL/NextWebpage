@@ -6,7 +6,7 @@ interface VideoProps {
   url: string
 }
 
-export default function VideoCard(props:VideoProps) {
+export default function VideoCard(props: VideoProps) {
   return (
     <Wrapper>
       <div>
@@ -16,13 +16,14 @@ export default function VideoCard(props:VideoProps) {
           props.url.includes("youtube.com") // checks if url passed is youtube link
             ? (
               <iframe
+                className="youtube"
                 src={props.url}
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               />
             )
             : (
-              <video width="320" height="240" controls>
+              <video className="imgur" width="320" height="240" controls>
                 <source src={props.url} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>

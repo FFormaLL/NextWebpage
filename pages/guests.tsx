@@ -7,7 +7,7 @@ import { API_HOST } from '~/config';
 import { Main } from '~/styles/global'
 
 const GuestWrapper = styled.div`
-    width: 450px;
+    width: 430px;
     margin: 0 auto;
     border: 1px solid black;
     padding: 18px;
