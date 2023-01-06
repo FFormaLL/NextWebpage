@@ -15,13 +15,24 @@ export class TokenRefreshAPI {
     public static async RefreshAccessToken(accessToken:string) {}
 }
 
+export class DextoolsAPI {
+    public static async GetCryptoPrice():Promise<number> {
+        try {
+        const { data } = await axios.get(`https://www.dextools.io/shared/data/pair?address=0xc9c9c0c9a70355b0afb47571c37d6f7c5220e36d&chain=ether`)
+        return data.data[0].price
+        } catch (e) {
+            return -1
+        }
+    }
+}
+
 export class AuthAPI {
     public static async OAuthVendors() {
         const { data } = await axios.get(`${API_HOST}/auth/vendors`)
         return data
     }
     public static async OAuthLogin(vendor:string, oauthCode:string) {
-        const { data } = await axios.post(`${API_HOST}/auth/vendor/${vendor}/${base64Encode(oauthCode)}`)
+        const { data } = await axios.post(`${API_HOST}/auth/vendor/${vendor}/${oauthCode}`)
         return data
     }
     public static async OAuthAccountLink(vendor:string, oauthCode:string, userJwt:string) {
@@ -43,32 +54,11 @@ export class MockAuthAPI {
     public static async OAuthVendors() {
         return [
             {
-                vendorId: 'google',
-                vendorName: 'Google',
-                brandIcon: '/icons/google.svg',
-                brandColor: '#4285f4',
-                redirectUrl: '#',
-            },
-            {
-                vendorId: 'facebook',
-                vendorName: 'Facebook',
-                brandIcon: '/icons/facebook.svg',
-                brandColor: '#3b5998',
-                redirectUrl: '#',
-            },
-            {
-                vendorId: 'microsoft',
-                vendorName: 'Microsoft',
-                brandIcon: '/icons/microsoft.svg',
-                brandColor: '#333',
-                redirectUrl: '#',
-            },
-            {
                 vendorId: 'discord',
                 vendorName: 'Discord',
                 brandIcon: '/icons/discord.svg',
                 brandColor: '#5a67d8',
-                redirectUrl: '#',
+                redirectUrl: 'https://discord.com/api/oauth2/authorize?client_id=1048062091669553182&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fdiscord&response_type=code&scope=identify',
             },
             {
                 vendorId: 'twitch',
@@ -77,13 +67,6 @@ export class MockAuthAPI {
                 brandColor: '#6441A4',
                 redirectUrl: '#',
             },
-            {
-                vendorId: 'twitter',
-                vendorName: 'Twitter',
-                brandIcon: '/icons/twitter.svg',
-                brandColor: '#2DAAE1',
-                redirectUrl: '#',
-            }
         ]
     }
 }

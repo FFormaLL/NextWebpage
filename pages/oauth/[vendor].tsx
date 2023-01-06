@@ -6,7 +6,7 @@ import { PageContext, StoreActions } from '~/store'
 const MultiVendorOAuthRedirect = ({ forwardTo='/me' }) => {
   try {
     const router = useRouter()
-    router.push(forwardTo)
+    // router.push(forwardTo)
   } catch(e) {}
   return null
 }
@@ -14,11 +14,10 @@ const MultiVendorOAuthRedirect = ({ forwardTo='/me' }) => {
 MultiVendorOAuthRedirect.getInitialProps = async ({ store, query }:PageContext) => {
   try {
     const { vendor, code, state } = query
+    console.log({vendor}, {code}, {state})
     const { authenticationJwt } = store.getState()
     const parsedState = JSON.parse(base64Decode(state))
-    const authRes = parsedState?.action !== 'link'
-      ? await AuthAPI.OAuthLogin(vendor, code)
-      : await AuthAPI.OAuthAccountLink(vendor, code, authenticationJwt)
+    const authRes = await AuthAPI.OAuthLogin(vendor, code)
     store.dispatch({ type: StoreActions.SetAuthJWT, payload: authRes.jwt })
     store.dispatch({ type: StoreActions.SetAuthUser, payload: authRes.user })
     return {

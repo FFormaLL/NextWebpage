@@ -6,6 +6,8 @@ import { ColorScheme, GlobalState } from '~/store'
 import Page from '~/components/Page'
 import Clock from '~/components/Clock'
 import Button from '~/components/Buttons/Button'
+import axios from 'axios'
+
 
 const WrapperWelcome = styled.div`
   position: relative;
@@ -14,9 +16,10 @@ const WrapperWelcome = styled.div`
   height: 80vh;
 `
 
-const IndexPage = () => {
+const IndexPage = ({price}) => {
+  console.log(price)
   const { isMobile, isTablet } = useMedia()
-  const globalState = useSelector((s:GlobalState) => s)
+  const globalState = useSelector((s: GlobalState) => s)
   const { setJwt, setUser, switchColorScheme } = useDispatcher()
   const toggleUserSim = () => {
     if (globalState.authenticatedUser) {
@@ -36,18 +39,19 @@ const IndexPage = () => {
         <h1>Welcome! 👋</h1>
         <h3>
           <Clock />
+          💲{price.toFixed(4) || 1} 
         </h3>
         <Button onClick={toggleUserSim}>
           Log {globalState.authenticatedUser ? 'out' : 'in'}
         </Button>
         <Button onClick={switchColorScheme}>
-          {globalState.colorScheme === ColorScheme.Dark ? 'Light' : 'Dark'} 
+          {globalState.colorScheme === ColorScheme.Dark ? 'Light' : 'Dark'}
         </Button>
         <Button>
-           {
+          {
             isMobile ? 'Mobile'
               : isTablet ? 'Tablet' : 'Desktop'
-          } 
+          }
         </Button>
         <Link href="clips">
           <Button>
@@ -59,9 +63,23 @@ const IndexPage = () => {
             Sign my website here!
           </Button>
         </Link>
+        <Link href="chatroom">
+          <Button>
+            Chatroom
+          </Button>
+        </Link>
       </WrapperWelcome>
     </Page>
   )
+}
+
+IndexPage.getInitialProps = async () => {
+  try {
+    const { data } = await axios.get("http://localhost:3000/api/dextools")
+    return { price:data }
+  } catch (e) {
+    return {price: -1}
+  }
 }
 
 export default IndexPage
