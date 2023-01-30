@@ -7,6 +7,7 @@ import Page from '~/components/Page'
 import Clock from '~/components/Clock'
 import Button from '~/components/Buttons/Button'
 import axios from 'axios'
+import Stars from '~/components/Stars/star'
 
 
 const WrapperWelcome = styled.div`
@@ -16,9 +17,8 @@ const WrapperWelcome = styled.div`
   height: 80vh;
 `
 
-const IndexPage = ({price}) => {
+const IndexPage = ({ price }) => {
   console.log(price)
-  const { isMobile, isTablet } = useMedia()
   const globalState = useSelector((s: GlobalState) => s)
   const { setJwt, setUser, switchColorScheme } = useDispatcher()
   const toggleUserSim = () => {
@@ -35,40 +35,46 @@ const IndexPage = ({price}) => {
   }
   return (
     <Page title="Home">
-      <WrapperWelcome>
-        <h1>Welcome! 👋</h1>
-        <h3>
-          <Clock />
-          💲{price.toFixed(4) || 1} 
-        </h3>
-        <Button onClick={toggleUserSim}>
-          Log {globalState.authenticatedUser ? 'out' : 'in'}
-        </Button>
-        <Button onClick={switchColorScheme}>
-          {globalState.colorScheme === ColorScheme.Dark ? 'Light' : 'Dark'}
-        </Button>
-        <Button>
-          {
-            isMobile ? 'Mobile'
-              : isTablet ? 'Tablet' : 'Desktop'
-          }
-        </Button>
-        <Link href="clips">
-          <Button>
-            Clips
+      <>
+        <Stars>
+          <div id='stars'></div>
+          <div id='stars2'></div>
+          <div id='stars3'></div>
+        </Stars>
+        <WrapperWelcome>
+          <h1>Welcome! 👋</h1>
+          <h3>
+            <Clock />
+            💲{price.toFixed(4) || 1}
+          </h3>
+          <Button onClick={toggleUserSim}>
+            Log {globalState.authenticatedUser ? 'out' : 'in'}
           </Button>
-        </Link>
-        <Link href="guests">
-          <Button>
-            Sign my website here!
+          <Button onClick={switchColorScheme}>
+            {globalState.colorScheme === ColorScheme.Dark ? 'Light' : 'Dark'}
           </Button>
-        </Link>
-        <Link href="chatroom">
-          <Button>
-            Chatroom
-          </Button>
-        </Link>
-      </WrapperWelcome>
+          <Link href="clips">
+            <Button>
+              Clips
+            </Button>
+          </Link>
+          <Link href="guests">
+            <Button>
+              Sign my website here!
+            </Button>
+          </Link>
+          <Link href="chatroom">
+            <Button>
+              Chatroom *WIP*
+            </Button>
+          </Link>
+          <Link href="todo">
+            <Button>
+              Todo *WIP*
+            </Button>
+          </Link>
+        </WrapperWelcome>
+      </>
     </Page>
   )
 }
@@ -76,9 +82,9 @@ const IndexPage = ({price}) => {
 IndexPage.getInitialProps = async () => {
   try {
     const { data } = await axios.get("http://localhost:3000/api/dextools")
-    return { price:data }
+    return { price: data }
   } catch (e) {
-    return {price: -1}
+    return { price: -1 }
   }
 }
 
