@@ -2,12 +2,16 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { ThemeProps } from './theme'
 
 const GlobalStyle = createGlobalStyle(({ theme }: ThemeProps) => `
+  html {
+    height: 100%;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
+  }
   body {
     margin: 0;
     padding: 0;
     color: ${theme.colors.fgPrimary};
     font-family: ${theme.fonts.roboto};
-    background-color: ${theme.colors.bgPrimary};
   }
   h1 {
     font-size: 64px;
