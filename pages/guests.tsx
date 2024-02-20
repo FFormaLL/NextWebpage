@@ -90,22 +90,22 @@ const GuestList = ({ guestList }) => {
     return (
         <Main>
             <Page title="Guests">
-                <GuestWrapper>
-                    {
-                        !guests
-                            ? <h3>Connection to API cannot be obtained</h3>
-                            : !guests.length
-                                ? <h3>{`No guests :(`}</h3>
-                                : <ol>{guests.map(guest => <li key={guest._id}>{guest.name}</li>)}</ol>
-                    }
-                    <input
-                        type="text"
-                        placeholder="Enter your name"
-                        value={input}
-                        onChange={e => setInput(e.target.value)}
-                    />
-                    <Button onClick={submitGuest}>Submit</Button>
-                </GuestWrapper>
+                    <GuestWrapper>
+                        {
+                            !guests
+                                ? <h3>Connection to API cannot be obtained</h3>
+                                : !guests.length
+                                    ? <h3>{`No guests :(`}</h3>
+                                    : <ol>{guests.map(guest => <li key={guest._id}>{guest.name}</li>)}</ol>
+                        }
+                        <input
+                            type="text"
+                            placeholder="Enter your name"
+                            value={input}
+                            onChange={e => setInput(e.target.value)}
+                        />
+                        <Button onClick={submitGuest}>Submit</Button>
+                    </GuestWrapper>
             </Page>
         </Main>
     )

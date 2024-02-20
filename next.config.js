@@ -1,6 +1,6 @@
 // Ran into Docker build issues when using preact so disabling for now...
 module.exports = {
-    webpack: (config, { dev, isServer }) => {
+  webpack: (config, { dev, isServer }) => {
     // Replace React with Preact only in client production build
     //   if (!dev && !isServer) {
     //     Object.assign(config.resolve.alias, {
@@ -9,9 +9,10 @@ module.exports = {
     //       'react-dom': 'preact/compat',
     //     })
     //   }
-      return config
-    },
-    compiler: {
-      styledComponents: true
-    }
+    config.resolve.fallback = { ...config.resolve.fallback, net: false, fs: false };
+    return config
+  },
+  compiler: {
+    styledComponents: true
+  }
 }
